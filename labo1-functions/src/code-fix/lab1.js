@@ -2,56 +2,87 @@
 
 const functions = {
   sum(a, b) {
-    // Todo use typeof and throw
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
-    // Docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw
+    if (typeof a !== 'number' || typeof b !== 'number') {
+      throw new Error('Not a number');
+    }
+    return a + b;
   },
 
   doubleNumbersInArray: function doubleNumbersInArray(array) {
-    // Todo: use Array/map
-    // Docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
-    const double = function () {};
+    const double = (c) => {
+      return c * 2;
+    };
 
     return array.map(double);
   },
 
   checkForBadWords(input) {
-    // Todo: use Array/forEach and throw
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
-    let grosMot = ['merde'];
+    let grosMot = ['merde', 'putain'];
+    grosMot.forEach((elt) => {
+      if (input.includes(elt)) {
+        throw new Error('Gros Mot');
+      }
+    });
+
+    // const test = grosMot.some((mot)=>input.includes(mot));
+
+    // if(test){
+    //   throw new Error ("Gros Mot");
+    // }
   },
 
   nameOfWeekDay(index) {
-    const jours = [];
-    return index;
+    const jours = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
+    return jours[index];
   },
 
   sortNumbers(array) {
-    // Docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-
+    array.sort((e, f) => e - f);
     return array;
   },
 
   createCounterFunction(input) {
-    return input;
+    return () => {
+      // input++; -> retourne ancienne valeur de input
+      // ++input; -> retourne nouvelle valeur de input
+      return ++input;
+    };
   },
 
   createHelloMessage(name) {
     // Docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-    return name;
+    const message = `Hello ${name}. Are you well?`;
+    return message;
   },
 
   callTheCallback(callback) {
-    // Docs: https://developer.mozilla.org/en-US/docs/Glossary/Callback_function pas ;cc ENZO <3
+    // Docs: https://developer.mozilla.org/en-US/docs/Glossary/Callback_function
+    callback(1, 2);
     return null;
   },
 
   combineArrays(array1, array2) {
-    return [];
+    const array3 = array1.concat(array2);
+    return array3;
   },
 
   promiseMeMoney() {
-    return true;
+    //Docs : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise
+    const promise = new Promise((resolve, _) => {
+      setTimeout(() => {
+        resolve('send message');
+      }, 100);
+    });
+
+    return promise.then((value) => value);
   },
 };
 
